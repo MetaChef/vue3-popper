@@ -275,10 +275,14 @@ var debounce_1 = debounce$1;function useEventListener(target, event, handler) {
     }
 
     observer = new MutationObserver(checkContent);
-    observer.observe(popperNode.value, {
-      childList: true,
-      subtree: true
-    });
+    setTimeout(() => {
+      if(popperNode?.value){
+        observer.observe(popperNode.value, {
+          childList: true,
+          subtree: true
+        });
+      }
+    }, 0);
   });
   vue.onBeforeUnmount(function () {
     return observer && observer.disconnect();

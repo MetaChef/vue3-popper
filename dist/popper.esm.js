@@ -121,10 +121,14 @@ function useContent(slots, popperNode, content) {
     }
 
     observer = new MutationObserver(checkContent);
-    observer.observe(popperNode.value, {
-      childList: true,
-      subtree: true
-    });
+    setTimeout(() => {
+      if(popperNode?.value){
+        observer.observe(popperNode.value, {
+          childList: true,
+          subtree: true
+        });
+      }
+    }, 0);
   });
   onBeforeUnmount(() => observer && observer.disconnect());
   /**
